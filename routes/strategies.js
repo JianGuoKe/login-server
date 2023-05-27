@@ -11,11 +11,11 @@ const passport = require("passport")
 const apiLimiter = require("express-rate-limit")(config.rateLimitOptions)
 
 
-module.exports = app => {
-
+module.exports = app => { 
   _.forEach(strategies, (strategy, providerId) => {
 
     let provider = utils.prepareProviders().find(provider => provider.id === providerId)
+  
     if (!provider) {
       return
     }

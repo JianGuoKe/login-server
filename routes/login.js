@@ -7,10 +7,10 @@ const utils = require("../utils")
 module.exports = app => {
 
   app.get("/login", (req, res) => {
-    utils.saveReferrerInSession(req)
-    if (req.user) {
+    utils.saveReferrerInSession(req) 
+    if (req.user) { 
       res.redirect("/account")
-    } else {
+    } else { 
       res.render("login")
     }
   })

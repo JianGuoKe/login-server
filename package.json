@@ -61,9 +61,11 @@
     "passport-github": "^1.1.0",
     "passport-ldapauth": "^3.0.1",
     "passport-local": "^1.0.0",
-    "passport-mediawiki-oauth": "git+https://abc@github.com/stefandesu/passport-mediawiki-oauth#0158a4f",
     "passport-orcid": "0.0.4",
+    "passport-qq": "^0.1.0",
     "passport-stack-exchange": "^1.0.0",
+    "passport-wechat": "^2.0.4",
+    "passport-weibo": "^1.0.0-beta.0",
     "should-send-same-site-none": "^2.0.5"
   },
   "devDependencies": {

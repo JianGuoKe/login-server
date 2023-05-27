@@ -168,7 +168,7 @@ if (env != "test") {
     config.providers = config.providers.filter(provider => !provider.disabled)
     if (!config.providers.length) {
       console.warn("Warning: No providers configured. Refer to the documentation on how to configure providers: https://github.com/gbv/login-server#providers")
-    }
+    } 
   } catch(error) {
     console.error(`Error: Missing or invalid providers.json at ${providersFile}; aborting startup. Please consult the documentation.`)
     process.exit(1)
