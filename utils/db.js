@@ -41,6 +41,7 @@ module.exports = {
     // If retry === false, add error handler before connecting
     !retry && addErrorHandler()
     async function _connect() {
+      // console.log(config.database.url)
       return await mongoose.connect(config.database.url, config.database.options)
     }
     let result
