@@ -42,7 +42,7 @@ module.exports = (app) => {
       key: req.params.key,
       //   disabled: req.query.disabled ? undefined : false,
     }).then((doc) => {
-      delete doc.userId
+      //   delete doc.userId
       res.json(doc)
     })
   })
@@ -51,22 +51,42 @@ module.exports = (app) => {
     if (!req.user) {
       return res.status(401).end()
     }
-    Profile.updateOne(
-      { userId: req.user._id, key: req.params.key },
-      {
-        $set: {
-          ...req.body,
-          userId: req.user._id,
-          key: req.params.key,
+    if (req.body.__v !== undefined) {
+      Profile.findOneAndUpdate(
+        { userId: req.user._id, key: req.params.key, __v: req.body.__v },
+        {
+          $set: {
+            ...req.body,
+            userId: req.user._id,
+            key: req.params.key,
+          },
         },
-      },
-      {
-        new: true,
-        upsert: true,
-      },
-    ).then((doc) => {
-      res.json(doc)
-    })
+        {
+          new: true,
+          upsert: true,
+        },
+      )
+        .then((ret) => {
+          res.json(ret)
+        })
+        .catch((err) => {
+          console.log(err.message)
+          res.status(500).send("保存设置失败")
+        })
+    } else {
+      Profile.create({
+        ...req.body,
+        userId: req.user._id,
+        key: req.params.key,
+      })
+        .then((ret) => {
+          res.json(ret)
+        })
+        .catch((err) => {
+          console.log(err.message)
+          res.status(500).send("保存设置失败")
+        })
+    }
   })
 
   app.delete("/profile/:key", (req, res) => {
