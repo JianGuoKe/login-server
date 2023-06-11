@@ -1,4 +1,5 @@
 FROM node:16-alpine
+RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 
 WORKDIR /usr/src/app
 
