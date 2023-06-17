@@ -172,6 +172,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   rolling: true,
+  proxy: true,
   store: mongoStore,
   cookie: {
     sameSite: config.ssl ? "none" : "lax",
